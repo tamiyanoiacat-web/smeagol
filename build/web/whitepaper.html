@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TAMIYANOIA Cat — Official Whitepaper ($TAMIYANOIA)</title>
+  <meta name="description" content="Official Whitepaper for TAMIYANOIA Cat ($TAMIYANOIA) on BNB Chain. Tokenomics, Roadmap, Conservation, and Ecosystem.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0b12;
+      --card-bg: #141424;
+      --card-border: #262447;
+      --accent: #8b5cf6;
+      --accent-glow: rgba(139, 92, 246, 0.25);
+      --accent-light: #a78bfa;
+      --text: #f3f4f6;
+      --text-muted: #9ca3af;
+      --gold: #fbbf24;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      padding-bottom: 80px;
+    }
+    header {
+      background: linear-gradient(180deg, #181530 0%, #0b0b12 100%);
+      border-bottom: 1px solid var(--card-border);
+      padding: 40px 20px;
+      text-align: center;
+    }
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .brand-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(139, 92, 246, 0.15);
+      border: 1px solid var(--accent);
+      color: var(--accent-light);
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(28px, 5vw, 44px);
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #ffffff 30%, #a78bfa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 12px;
+    }
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 16px;
+    }
+    .quick-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-primary:hover {
+      background: #7c3aed;
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+    .btn-secondary {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text);
+    }
+    .btn-secondary:hover {
+      border-color: var(--accent);
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 24px;
+      margin-top: 24px;
+    }
+    h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 22px;
+      margin-bottom: 16px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .stat-box {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+    }
+    .stat-val {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--accent-light);
+      font-family: 'Outfit', sans-serif;
+    }
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .contract-bar {
+      background: #0d0c18;
+      border: 1px dashed var(--accent);
+      border-radius: 10px;
+      padding: 14px;
+      font-family: monospace;
+      font-size: 13px;
+      color: #ddd;
+      word-break: break-all;
+      margin-top: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .roadmap-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .roadmap-phase {
+      border-left: 3px solid var(--accent);
+      padding-left: 16px;
+    }
+    .phase-badge {
+      display: inline-block;
+      background: rgba(139, 92, 246, 0.2);
+      color: var(--accent-light);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 4px;
+      margin-bottom: 6px;
+    }
+    .phase-title {
+      font-weight: 700;
+      font-size: 16px;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .phase-items {
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="brand-badge">🐱 TAMIYANOIA Cat ($TAMIYANOIA)</div>
+    <h1>Official Whitepaper</h1>
+    <p class="subtitle">Community-Driven Web3 Ecosystem on Binance Smart Chain (BSC / BEP-20)</p>
+    <div class="quick-actions">
+      <a href="/" class="btn btn-secondary">← Back to Main Website</a>
+      <a href="https://t.me/+nzaN5SIwVJ85ZDNk" target="_blank" class="btn btn-primary">Join Telegram</a>
+      <a href="https://x.com/TAMIYANOIA_Cat" target="_blank" class="btn btn-secondary">Twitter / X</a>
+      <a href="https://dexscreener.com/bsc/0x8bea530150675c1eC537Bde45c0480164590c898" target="_blank" class="btn btn-secondary">DexScreener</a>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- Project Introduction -->
+  <section class="card">
+    <h2>📌 Project Introduction</h2>
+    <p><strong>TAMIYANOIA</strong> is a decentralized, community-governed cryptocurrency on the Binance Smart Chain (BSC / BEP-20).</p>
+    <br>
+    <ul style="padding-left: 20px; color: var(--text-muted);">
+      <li><strong>Launch History:</strong> Originally launched in early 2021; Community Takeover (CTO) officially ignited in 2026.</li>
+      <li><strong>Ownership:</strong> Renounced (100% decentralized).</li>
+      <li><strong>Liquidity:</strong> 100% Permanently Burned.</li>
+      <li><strong>Audit:</strong> Contract fully audited with public on-chain transparency.</li>
+    </ul>
+    <div class="contract-bar">
+      <span><strong>Contract:</strong> 0x8bea530150675c1eC537Bde45c0480164590c898</span>
+    </div>
+  </section>
+
+  <!-- Mission -->
+  <section class="card">
+    <h2>🎯 Mission & Vision</h2>
+    <p>1. <strong>Empower Holders:</strong> Cultivate a fully decentralized, community-governed Web3 ecosystem where holders direct the future.</p>
+    <p style="margin-top: 8px;">2. <strong>Cat Conservation:</strong> Support real-world feline conservation and rescue sanctuaries through transparent token funding.</p>
+    <p style="margin-top: 12px; color: var(--accent-light); font-style: italic;">
+      Branding emphasizes the Cat as an enduring symbol of strength, victory, resilience, and community power — <strong>“Fierce Firm Victory”</strong>.
+    </p>
+  </section>
+
+  <!-- Tokenomics -->
+  <section class="card">
+    <h2>🪙 Tokenomics (BEP-20)</h2>
+    <div class="stats-grid">
+      <div class="stat-box">
+        <div class="stat-val">1,000T</div>
+        <div class="stat-label">Total Supply</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val">~500T</div>
+        <div class="stat-label">Permanently Burned (50%)</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val">~500T</div>
+        <div class="stat-label">Circulating Supply (50%)</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val">0% / 0%</div>
+        <div class="stat-label">Zero Buy & Sell Tax</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Roadmap -->
+  <section class="card">
+    <h2>🗺️ Strategic Roadmap (2026–2027+)</h2>
+    <div class="roadmap-list">
+      <div class="roadmap-phase">
+        <div class="phase-badge">Q4 2026</div>
+        <div class="phase-title">CTO Phase</div>
+        <div class="phase-items">Official website • Aggressive marketing campaigns • 70+ On-chain holders • Firescreener listing • Tiwicat Protocol listing • New website launch.</div>
+      </div>
+      <div class="roadmap-phase">
+        <div class="phase-badge">Q1 2027</div>
+        <div class="phase-title">Growth Phase</div>
+        <div class="phase-items">Strategic token burn events (15% burn) • 500+ Holders • 1,000+ Telegram community members • DexScreener enhanced verification update.</div>
+      </div>
+      <div class="roadmap-phase">
+        <div class="phase-badge">Q2 2027</div>
+        <div class="phase-title">Expansion Phase</div>
+        <div class="phase-items">Launch TAMI Swap (DEX) • First Centralized Exchange (CEX) listing • Target: 5,000+ holders & 5,000+ Telegram members.</div>
+      </div>
+      <div class="roadmap-phase">
+        <div class="phase-badge">Q3 2027</div>
+        <div class="phase-title">Global Utility & Ecosystem</div>
+        <div class="phase-items">TAMI Burrow (Cat-themed NFT Marketplace) • Member of WinacoinDao ecosystem • Emptycoin liquidity booster listing • +1 Tier CEX listing • 1,000+ holders & 10,000 Telegram members globally • Wildlife conservation partnerships.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Conservation & Community -->
+  <section class="card">
+    <h2>🐾 TAMI Conservation & Community</h2>
+    <p>• <strong>Open Book Policy:</strong> Publicly verifiable wallets for charity, marketing/dev, and burn tracking.</p>
+    <p style="margin-top: 6px;">• <strong>Buyback & Burn:</strong> Active buyback programs to continuously reduce circulating supply.</p>
+    <p style="margin-top: 6px;">• <strong>Cat Rehabilitation:</strong> Funding feline welfare organizations, shelter food drives, and veterinary medical aid.</p>
+    <p style="margin-top: 6px;">• <strong>Community Voice:</strong> Regular community AMAs, voting, and collaborative social raids.</p>
+  </section>
+
+  <!-- Verified Links -->
+  <section class="card">
+    <h2>🔗 Official Verified Channels</h2>
+    <p>• <strong>Website:</strong> <a href="https://www.tamiyanoiacat.fun/" target="_blank" style="color: var(--accent-light);">www.tamiyanoiacat.fun</a></p>
+    <p style="margin-top: 6px;">• <strong>Telegram:</strong> <a href="https://t.me/+nzaN5SIwVJ85ZDNk" target="_blank" style="color: var(--accent-light);">t.me/+nzaN5SIwVJ85ZDNk</a></p>
+    <p style="margin-top: 6px;">• <strong>Twitter / X:</strong> <a href="https://x.com/TAMIYANOIA_Cat" target="_blank" style="color: var(--accent-light);">x.com/TAMIYANOIA_Cat</a></p>
+    <p style="margin-top: 6px;">• <strong>GitHub Repo:</strong> <a href="https://github.com/tamiyanoiacat-web/smeagol" target="_blank" style="color: var(--accent-light);">tamiyanoiacat-web/smeagol</a></p>
+  </section>
+
+</main>
+
+<footer>
+  <p>© 2026 TAMIYANOIA Cat ($TAMIYANOIA) • One Community. One Ecosystem. One Journey. 🌍🐱</p>
+</footer>
+
+</body>
+</html>
