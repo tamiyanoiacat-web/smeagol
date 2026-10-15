@@ -97,50 +97,286 @@ class _LeftContent extends StatelessWidget {
   const _LeftContent({required this.fadeAnim, this.onExploreTap});
 
   void _showWhitepaperDialog(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final isWide = size.width > 700;
+
     showDialog(
       context: context,
-      builder: (ctx) => AlertDialog(
+      builder: (ctx) => Dialog(
         backgroundColor: kWhite,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        title: Row(
-          children: [
-            const Text('🐱 ', style: TextStyle(fontSize: 24)),
-            Text(
-              'TAMIYANOIA Cat Whitepaper',
-              style: GoogleFonts.inter(fontWeight: FontWeight.w700, color: kTextDark),
-            ),
-          ],
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        insetPadding: EdgeInsets.symmetric(
+          horizontal: isWide ? 40 : 16,
+          vertical: 24,
         ),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'One Community. One Ecosystem. One Journey.',
-              style: GoogleFonts.inter(color: kPurple, fontWeight: FontWeight.w600, fontSize: 14),
-            ),
-            const SizedBox(height: 12),
-            Text(
-              'The official TAMIYANOIA Cat Whitepaper detailing our full vision, BEP-20 tokenomics, ecosystem utility layers, and global roadmap will be released during Phase 01.\n\nJoin our community channels to participate in the early contributor program and receive the first release.',
-              style: GoogleFonts.inter(color: kTextMuted, fontSize: 13, height: 1.6),
-            ),
-          ],
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(ctx).pop(),
-            child: Text('Close', style: GoogleFonts.inter(color: kTextMuted)),
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            maxWidth: 680,
+            maxHeight: size.height * 0.85,
           ),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: kPurple,
-              foregroundColor: Colors.white,
+          child: Padding(
+            padding: const EdgeInsets.all(24),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Header
+                Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        color: kPurple.withOpacity(0.12),
+                        shape: BoxShape.circle,
+                      ),
+                      child: const Text('🐱', style: TextStyle(fontSize: 26)),
+                    ),
+                    const SizedBox(width: 14),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'TAMIYANOIA CAT WHITEPAPER',
+                            style: GoogleFonts.inter(
+                              fontWeight: FontWeight.w800,
+                              fontSize: isWide ? 18 : 16,
+                              color: kTextDark,
+                              letterSpacing: -0.3,
+                            ),
+                          ),
+                          Text(
+                            'Official Summary • BSC (BEP-20)',
+                            style: GoogleFonts.inter(
+                              color: kPurple,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 12,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    IconButton(
+                      icon: const Icon(Icons.close, color: kTextMuted),
+                      onPressed: () => Navigator.of(ctx).pop(),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 16),
+                const Divider(color: kBorderColor, height: 1),
+                const SizedBox(height: 16),
+
+                // Scrollable Body
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Project Intro Box
+                        Container(
+                          padding: const EdgeInsets.all(14),
+                          decoration: BoxDecoration(
+                            color: kOffWhite,
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(color: kBorderColor),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                '📌 Project Introduction',
+                                style: GoogleFonts.inter(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 14,
+                                  color: kTextDark,
+                                ),
+                              ),
+                              const SizedBox(height: 6),
+                              Text(
+                                'TAMIYANOIA is a community-driven cryptocurrency on Binance Smart Chain (BSC / BEP-20). Originally launched in early 2021, the Community Takeover (CTO) was ignited in 2026.\n\nContract Address: 0x8bea530150675c1eC537Bde45c0480164590c898\nOwnership renounced, 100% liquidity burned, contract audited. Full transparency with public on-chain wallets.',
+                                style: GoogleFonts.inter(
+                                  fontSize: 12,
+                                  color: kTextMuted,
+                                  height: 1.5,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 18),
+
+                        // Mission
+                        Text(
+                          '🎯 Mission & Vision',
+                          style: GoogleFonts.inter(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 14,
+                            color: kTextDark,
+                          ),
+                        ),
+                        const SizedBox(height: 6),
+                        Text(
+                          '1. Empower holders via a fully decentralized, community-governed ecosystem.\n2. Support real-world Cat conservation through charitable funding from token economics.\n\nBranding emphasizes the Cat as a symbol of strength, victory, resilience, and community power ("Fierce Firm Victory").',
+                          style: GoogleFonts.inter(fontSize: 12, color: kTextMuted, height: 1.5),
+                        ),
+                        const SizedBox(height: 18),
+
+                        // Tokenomics
+                        Text(
+                          '🪙 Tokenomics (BEP-20)',
+                          style: GoogleFonts.inter(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 14,
+                            color: kTextDark,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        Wrap(
+                          spacing: 8,
+                          runSpacing: 8,
+                          children: [
+                            _buildWpStatCard('Total Supply', '1,000T', 'Quadrillion'),
+                            _buildWpStatCard('Burned', '~500T', '50% Permanently'),
+                            _buildWpStatCard('Circulating', '~500T', '50% Active'),
+                            _buildWpStatCard('Tax Breakdown', '0% / 0%', 'Zero Buy/Sell Tax'),
+                          ],
+                        ),
+                        const SizedBox(height: 18),
+
+                        // Roadmap
+                        Text(
+                          '🗺️ Roadmap (2026–2027+)',
+                          style: GoogleFonts.inter(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 14,
+                            color: kTextDark,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        _buildWpRoadmapItem('Q4 2026', 'CTO Phase', 'Official website • Aggressive marketing • 70+ holders • Firescreener listing • Tiwicat Protocol listing • New website launch'),
+                        _buildWpRoadmapItem('Q1 2027', 'Growth Phase', 'Token burn events (15%) • 500+ Holders • 1,000+ Telegram members • DexScreener Update'),
+                        _buildWpRoadmapItem('Q2 2027', 'Expansion Phase', 'Launch TAMI Swap (DEX) • First CEX listing • Target: 5,000+ holders & 5,000+ Telegram members'),
+                        _buildWpRoadmapItem('Q3 2027', 'Global Utility', 'TAMI Burrow (NFT marketplace) • Member of WinacoinDao ecosystem • List on Emptycoin booster • +1 CEX listing • 1,000+ holders & 10,000 Telegram members globally • Wildlife conservation partnerships'),
+                        const SizedBox(height: 18),
+
+                        // Conservation
+                        Text(
+                          '🐾 TAMI Conservation & Community',
+                          style: GoogleFonts.inter(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 14,
+                            color: kTextDark,
+                          ),
+                        ),
+                        const SizedBox(height: 6),
+                        Text(
+                          '• Education & research\n• Rehabilitation of rescued cats\n• Global awareness campaigns (e.g. International Cat Day)\n• Future plans: Co-branded campaigns and NFT collections directly funding animal shelters.\n• "Open book" transparency with public on-chain wallets.',
+                          style: GoogleFonts.inter(fontSize: 12, color: kTextMuted, height: 1.5),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                const Divider(color: kBorderColor, height: 1),
+                const SizedBox(height: 14),
+
+                // Action Buttons
+                Wrap(
+                  alignment: WrapAlignment.spaceBetween,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  spacing: 10,
+                  runSpacing: 10,
+                  children: [
+                    ElevatedButton.icon(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF229ED9),
+                        foregroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                      ),
+                      icon: const Icon(Icons.send, size: 16),
+                      label: const Text('Telegram'),
+                      onPressed: () => openUrl('https://t.me/+nzaN5SIwVJ85ZDNk'),
+                    ),
+                    ElevatedButton.icon(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.black,
+                        foregroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                      ),
+                      icon: const Icon(Icons.alternate_email, size: 16),
+                      label: const Text('Twitter / X'),
+                      onPressed: () => openUrl('https://x.com/TAMIYANOIA_Cat'),
+                    ),
+                    ElevatedButton.icon(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: kPurple,
+                        foregroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                      ),
+                      icon: const Icon(Icons.language, size: 16),
+                      label: const Text('Website'),
+                      onPressed: () => openUrl('https://www.tamiyanoiacat.fun/'),
+                    ),
+                  ],
+                ),
+              ],
             ),
-            onPressed: () {
-              Navigator.of(ctx).pop();
-              openUrl('https://x.com/tamiyanoia_cat');
-            },
-            child: const Text('Join Community'),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildWpStatCard(String title, String val, String subtitle) {
+    return Container(
+      width: 135,
+      padding: const EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        color: kOffWhite,
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: kBorderColor),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(title, style: GoogleFonts.inter(fontSize: 10, color: kTextMuted, fontWeight: FontWeight.w600)),
+          const SizedBox(height: 2),
+          Text(val, style: GoogleFonts.inter(fontSize: 14, color: kPurple, fontWeight: FontWeight.w800)),
+          Text(subtitle, style: GoogleFonts.inter(fontSize: 9, color: kTextMuted)),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildWpRoadmapItem(String quarter, String title, String details) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
+            decoration: BoxDecoration(
+              color: kPurple.withOpacity(0.12),
+              borderRadius: BorderRadius.circular(4),
+            ),
+            child: Text(
+              quarter,
+              style: GoogleFonts.inter(fontSize: 10, fontWeight: FontWeight.w700, color: kPurple),
+            ),
+          ),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(title, style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w700, color: kTextDark)),
+                Text(details, style: GoogleFonts.inter(fontSize: 11, color: kTextMuted, height: 1.35)),
+              ],
+            ),
           ),
         ],
       ),
@@ -260,7 +496,7 @@ class _LeftContent extends StatelessWidget {
                 label: 'Join Community',
                 iconAsset: 'assets/images/face.png',
                 isPrimary: false,
-                onTap: () => openUrl('https://x.com/tamiyanoia_cat'),
+                onTap: () => openUrl('https://x.com/TAMIYANOIA_Cat'),
               ),
               _HeroCTA(
                 label: 'Read Whitepaper',
